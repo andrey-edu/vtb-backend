@@ -6,22 +6,22 @@ from typing import List, Optional
 
 
 class Special(BaseModel):
-    vipZone: Optional[bool]
-    vipOffice: Optional[bool]
-    ramp: Optional[bool]
-    person: Optional[bool]
-    juridical: Optional[bool]
-    Prime: Optional[bool]
+    vipZone: bool
+    vipOffice: bool
+    ramp: bool
+    person: bool
+    juridical: bool
+    Prime: bool
 
 class Department(BaseModel):
     # id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     id: int
-    Biskvit_id: Optional[Optional[str]]
-    shortName: Optional[str]
-    address: Optional[str]
-    city: Optional[str]
-    scheduleFl: Optional[str]
-    scheduleJurL: Optional[str]
-    special: Optional[Special]
-    coordinates: Optional[Coordinates]
+    Biskvit_id: str
+    shortName: str
+    address: str
+    city: str
+    scheduleFl: str
+    scheduleJurL: str
+    special: Special
+    coordinates: Coordinates
 
