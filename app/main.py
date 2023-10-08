@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .routers import cities
+from .routers import cities, departments
 
 app = FastAPI(
     title = "VTB Departments",
@@ -8,3 +8,4 @@ app = FastAPI(
 )
 
 app.include_router(cities.router)
+app.include_router(departments.router)

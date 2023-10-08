@@ -10,8 +10,8 @@ load_dotenv()
 
 #* Create connection to MongoDB
 
-# pipenv install pymongo
-import pymongo
+# pipenv install motor
+from motor.motor_asyncio import AsyncIOMotorClient
 
 # получаем значение переменной
 MONGO_USER = os.environ.get("MONGO_INITDB_ROOT_USERNAME")
@@ -19,14 +19,7 @@ MONGO_PASSWORD = os.environ.get("MONGO_INITDB_ROOT_PASSWORD")
 MONGO_URL = os.environ.get("MONGO_URL")
 MONGO_PORT = os.environ.get("MONGO_PORT")
 
-client = pymongo.MongoClient(f"mongodb://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_URL}:{MONGO_PORT}/")
-
-# print the version of MongoDB server if connection successful
-print ("MongoDB server version:", client.server_info()["version"])
-
-# get the database_names from the MongoClient()
-# database_names = client.list_database_names()
-# print(database_names)
+client = AsyncIOMotorClient(f"mongodb://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_URL}:{MONGO_PORT}/")
 
 # get the departments database
-vtb = client["vtb"]
+vtb = client.vtb
