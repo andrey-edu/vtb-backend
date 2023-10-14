@@ -1,8 +1,7 @@
 from pydantic import BaseModel
 from pydantic import Field
-from ..schemas import PyObjectId, Coordinates
 from enum import Enum
-from typing import List, Optional
+from typing import List, Optional, Union
 
 
 class Special(BaseModel):
@@ -13,15 +12,31 @@ class Special(BaseModel):
     juridical: bool
     Prime: bool
 
+class ScheduleDay(BaseModel):
+    start: str
+    stop: str
+
+class Schedule(BaseModel):
+    mon: Optional[Union[ScheduleDay, bool]] = False
+    tue: Optional[Union[ScheduleDay, bool]] = False
+    wed: Optional[Union[ScheduleDay, bool]] = False
+    thu: Optional[Union[ScheduleDay, bool]] = False
+    fri: Optional[Union[ScheduleDay, bool]] = False
+    sat: Optional[Union[ScheduleDay, bool]] = False
+    sun: Optional[Union[ScheduleDay, bool]] = False
+
+class Point(BaseModel):
+    type: str
+    coordinates: List[float]
+
 class Department(BaseModel):
-    # id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     id: int
-    Biskvit_id: str
     shortName: str
     address: str
     city: str
-    scheduleFl: str
-    scheduleJurL: str
     special: Special
-    coordinates: Coordinates
-
+    scheduleAllWeekFl: Schedule
+    scheduleAllWeekJurl: Schedule
+    loc: Point
+    current_load: int
+    radius_dist: float

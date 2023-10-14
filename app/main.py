@@ -3,7 +3,7 @@ from .routers import cities, departments
 
 app = FastAPI(
     title = "VTB Departments",
-    docs_url = None,
+    docs_url = "/documentation",
     redoc_url = None
 )
 
